@@ -4,7 +4,7 @@
   "private": true,
   "description": "NovaSocial AI monorepo for an AI-first short-form social platform.",
   "engines": {
-    "node": ">=26.4.0",
+    "node": "24.x",
     "npm": ">=10.0.0"
   },
   "workspaces": [

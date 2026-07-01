@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm ci --legacy-peer-deps",
+  "buildCommand": "EXPO_PUBLIC_API_URL=mock://local npm --workspace mobile run export:web:pages",
+  "outputDirectory": "mobile/dist-pages",
+  "cleanUrls": true
+}

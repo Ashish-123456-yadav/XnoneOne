@@ -3,6 +3,7 @@ dist/
 dist-pages/
 build/
 .expo/
+.vercel/
 .turbo/
 coverage/
 .env
@@ -14,3 +15,4 @@ ios/
 android/
 uploads/
 tmp/
+.vercel
