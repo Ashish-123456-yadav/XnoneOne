@@ -2,6 +2,7 @@ node_modules/
 dist/
 dist-pages/
 build/
+builds/
 .expo/
 .vercel/
 .turbo/
