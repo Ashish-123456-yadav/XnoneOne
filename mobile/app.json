@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "NovaSocial AI",
+    "slug": "novasocial-ai",
+    "scheme": "novasocial",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "assetBundlePatterns": ["**/*"]
+  }
+}

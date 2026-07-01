@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@novasocial/shared": ["../shared/src"]
+    }
+  },
+  "extends": "expo/tsconfig.base",
+  "include": ["App.tsx", "src/**/*.ts", "src/**/*.tsx", "nativewind-env.d.ts", "../shared/src/**/*.ts"]
+}

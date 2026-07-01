@@ -1,0 +1,15 @@
+node_modules/
+dist/
+build/
+.expo/
+.turbo/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+*.tsbuildinfo
+ios/
+android/
+uploads/
+tmp/

@@ -1,0 +1,78 @@
+services:
+  mongodb:
+    image: mongo:7
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME:-novasocial}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD:?set MONGODB_ROOT_PASSWORD}
+    volumes:
+      - mongodb-data:/data/db
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--username",
+          "${MONGODB_ROOT_USERNAME:-novasocial}",
+          "--password",
+          "${MONGODB_ROOT_PASSWORD}",
+          "--authenticationDatabase",
+          "admin",
+          "--quiet",
+          "--eval",
+          "db.adminCommand('ping').ok"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+
+  api:
+    image: ${API_IMAGE:-novasocial-api:latest}
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file:
+      - ${PRODUCTION_ENV_FILE:-.env.production}
+    environment:
+      DATABASE_PROVIDER: mongodb
+      MONGODB_URI: mongodb://${MONGODB_ROOT_USERNAME:-novasocial}:${MONGODB_ROOT_PASSWORD}@mongodb:27017/novasocial?authSource=admin
+      MONGODB_DATABASE: novasocial
+      REDIS_URL: redis://redis:6379
+      API_HOST: 0.0.0.0
+      API_PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/api/v1/health >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  admin:
+    image: ${ADMIN_IMAGE:-novasocial-admin:latest}
+    build:
+      context: ./admin
+      args:
+        VITE_API_BASE_URL: ${PUBLIC_API_BASE_URL:?set PUBLIC_API_BASE_URL}
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  mongodb-data:
+  redis-data:

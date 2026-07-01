@@ -1,0 +1,35 @@
+{
+  "name": "novasocial-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NovaSocial AI monorepo for an AI-first short-form social platform.",
+  "engines": {
+    "node": ">=26.4.0",
+    "npm": ">=10.0.0"
+  },
+  "workspaces": [
+    "backend",
+    "mobile",
+    "admin",
+    "shared"
+  ],
+  "scripts": {
+    "dev:api": "npm --workspace backend run start:dev",
+    "dev:mobile": "npm --workspace mobile run start",
+    "dev:admin": "npm --workspace admin run start",
+    "build": "npm --workspace backend run build && npm --workspace admin run build",
+    "test": "npm --workspace backend run test",
+    "typecheck": "npm --workspace backend run typecheck && npm --workspace mobile run typecheck && npm --workspace admin run typecheck",
+    "format": "npm --workspaces run format --if-present"
+  },
+  "keywords": [
+    "social-media",
+    "ai",
+    "short-video",
+    "nestjs",
+    "expo",
+    "react-native"
+  ],
+  "author": "",
+  "license": "UNLICENSED"
+}

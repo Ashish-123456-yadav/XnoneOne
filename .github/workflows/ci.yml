@@ -1,0 +1,24 @@
+name: NovaSocial CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26.4.0
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+      - name: Typecheck all workspaces
+        run: npm run typecheck
+      - name: Test backend
+        run: npm run test
+      - name: Build admin
+        run: npm --workspace admin run build
