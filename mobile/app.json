@@ -1,12 +1,49 @@
 {
   "expo": {
-    "name": "NovaSocial AI",
-    "slug": "novasocial-ai",
-    "scheme": "novasocial",
+    "name": "Xnova",
+    "description": "AI-first short-form creator platform for captions, videos, discovery, and creator workflows.",
+    "slug": "xnova",
+    "scheme": "xnova",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#080b0f"
+    },
+    "ios": {
+      "bundleIdentifier": "com.xnova.novasocialai",
+      "buildNumber": "1",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Xnova uses the camera so creators can record short videos.",
+        "NSMicrophoneUsageDescription": "Xnova uses the microphone so creators can record audio for videos.",
+        "NSPhotoLibraryUsageDescription": "Xnova uses your photo library so you can select videos to publish."
+      }
+    },
+    "android": {
+      "package": "com.xnova.novasocialai",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#080b0f"
+      },
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "READ_MEDIA_IMAGES", "READ_MEDIA_VIDEO"]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Xnova uses your photo library so you can select videos to publish.",
+          "cameraPermission": "Xnova uses the camera so creators can record short videos.",
+          "microphonePermission": "Xnova uses the microphone so creators can record audio for videos."
+        }
+      ]
+    ],
+    "githubUrl": "https://github.com/Ashish-123456-yadav/XnoneOne"
   }
 }

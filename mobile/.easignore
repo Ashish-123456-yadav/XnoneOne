@@ -1,0 +1,6 @@
+.expo/
+dist/
+dist-pages/
+node_modules/
+*.log
+*.tsbuildinfo

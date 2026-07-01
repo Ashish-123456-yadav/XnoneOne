@@ -10,6 +10,13 @@
     "web": "expo start --web",
     "export:web": "expo export --platform web --output-dir dist",
     "export:web:pages": "expo export --platform web --output-dir dist-pages && node scripts/patch-pages-export.js",
+    "eas:login": "npx eas-cli@latest login",
+    "eas:configure": "npx eas-cli@latest build:configure",
+    "build:android:preview": "npx eas-cli@latest build --platform android --profile preview",
+    "build:android": "npx eas-cli@latest build --platform android --profile production",
+    "build:ios": "npx eas-cli@latest build --platform ios --profile production",
+    "submit:android": "npx eas-cli@latest submit --platform android --profile production",
+    "submit:ios": "npx eas-cli@latest submit --platform ios --profile production",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
